@@ -48,7 +48,6 @@ class ImageGallery extends PureComponent {
   render() {
     const { images, error, loading } = this.state;
     const { handleCurrentImage, children } = this.props;
-    this.showErrorSearch();
     return (
       <>
         {error && <h1>{error.message}</h1>}
