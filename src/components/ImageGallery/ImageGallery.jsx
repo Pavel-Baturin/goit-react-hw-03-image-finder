@@ -34,7 +34,10 @@ class ImageGallery extends PureComponent {
         })
         .then(data =>
           this.setState(prevState => ({
-            images: prevState.images.concat(data.hits),
+            images:
+              prevState.images === []
+                ? [data.hits]
+                : [...prevState.images, ...data.hits],
           }))
         )
         .catch(error => this.setState({ error }))
@@ -45,6 +48,7 @@ class ImageGallery extends PureComponent {
   render() {
     const { images, error, loading } = this.state;
     const { handleCurrentImage, children } = this.props;
+    this.showErrorSearch();
     return (
       <>
         {error && <h1>{error.message}</h1>}
